@@ -1,79 +1,163 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>Sign-Up</title>
-<style>
-/*CSS File For Sign-Up webpage*/
-#body-color{
-background-color:#6699CC;
-}
-#Sign-Up{
-background-image:url('sign-up.png');
-background-size:500px 500px;
-background-repeat:no-repeat;
-background-attachment:fixed;
-background-position:center;
-margin-top:150px;
-margin-bottom:150px;
-margin-right:150px;
-margin-left:450px;
-padding:9px 35px; 
-}
-#button{
-border-radius:10px;
-width:100px;
-height:40px;
-background:#FF00FF;
-font-weight:bold;
-font-size:20px;
-}
-</style>
-</head>
-<body id="body-color">
-<div id="Sign-Up">
-<fieldset style="width:30%"><legend>Registration Form</legend>
-<table border="0">
-<tr>
-<form method="POST" action="connectivity-sign-up.php">
-<td>Name</td><td> <input type="text" name="name"></td>
-</tr>
-<tr>
-<td>Email</td><td> <input type="text" name="email"></td>
-</tr>
-<tr>
-<td>UserName</td><td> <input type="text" name="user"></td>
-</tr>
-<tr>
-<td>Password</td><td> <input type="password" name="pass"></td>
-</tr>
-<tr>
-<td>Confirm Password </td><td><input type="password" name="cpass"></td>
-</tr>
-<tr>
-<td><input id="button" type="submit" name="submit" value="Sign-Up"></td>
-</tr>
-</form>
-</table>
-</fieldset>
-</div>
-
-
-<?php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'registerForm');
-define('DB_USER','root');
-define('DB_PASSWORD','compass');
-
-$con=mysql_connect(DB_HOST,DB_USER,DB_PASSWORD) or die("Failed to connect to MySQL: " . mysql_error());
-$db=mysql_select_db(DB_NAME,$con) or die("Failed to connect to MySQL: " . mysql_error());
-?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Registration</title>
+    </head>
+    <body>
+     
+    <form name="reg" action="code_exec.php" onsubmit="return validateForm()" method="post">
+      <table width="274" border="0" align="center" cellpadding="2" cellspacing="0">
+        <tr>
+          <td colspan="2">
+            <div align="center">
+              <?php 
+              // $remarks=$_GET['remarks'];
+              if (!isset($_GET['remarks']))
+              {
+                echo 'Register Here';
+              }
+              if (isset($_GET['remarks']) && $_GET['remarks']=='success')
+              {
+                echo 'Registration Success';
+              }
+              ?>  
+            </div></td>
+          </tr>
+          <tr>
+            <td width="95"><div align="right">First Name:</div></td>
+            <td width="171"><input type="text" name="fname" /></td>
+          </tr>
+          <tr>
+            <td><div align="right">Last Name:</div></td>
+            <td><input type="text" name="lname" /></td>
+          </tr>
+          <tr>
+            <td><div align="right">Gender:</div></td>
+            <td><input type="text" name="gender" /></td>
+          </tr>
+          <tr>
+            <td><div align="right">Address:</div></td>
+            <td><input type="text" name="address" /></td>
+          </tr>
+          <tr>
+            <td><div align="right">Contact No.:</div></td>
+            <td><input type="text" name="contact" /></td>
+          </tr>
+          <tr>
+            <td><div align="right">Username:</div></td>
+            <td><input type="text" name="username" /></td>
+          </tr>
+          <tr>
+            <td><div align="right">Password:</div></td>
+            <td><input type="text" name="password" /></td>
+          </tr>
+          <tr>
+            <td><div align="right"></div></td>
+            <td><input name="submit" type="submit" value="Submit" /></td>
+          </tr>
+        </table>
+      </form>
 
 
 
+    <?php
+    $mysql_hostname = "localhost";
+    $mysql_user = "root";
+    $mysql_password = "compass";
+    $mysql_database = "registration";
+    $prefix = "";
+     
+    $bd = mysqli_connect($mysql_hostname, $mysql_user, $mysql_password) or die("Could not connect database");
+    mysqli_select_db($bd, $mysql_database) or die("Could not select database");
+    ?>
 
 
 
-</body>
-</html>
+    <?php
+    
+    
+     
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $mname=$_POST['mname'];
+    $address=$_POST['address'];
+    $contact=$_POST['contact'];
+    $username=$_POST['username'];
+    $password=$_POST['password'];
+     
+    mysqli_query($bd, "INSERT INTO member(fname, lname, gender, address, contact, picture, username, password)VALUES('$fname', '$lname', '$mname', '$address', '$contact', '$pic', '$username', '$password')");
+     
+    
+    ?>
 
 
+
+    <script type="text/javascript">
+      function validateForm()
+      {
+        var a=document.forms["reg"]["fname"].value;
+        var b=document.forms["reg"]["lname"].value;
+        var c=document.forms["reg"]["gender"].value;
+        var d=document.forms["reg"]["address"].value;
+        var e=document.forms["reg"]["contact"].value;
+        var f=document.forms["reg"]["username"].value;
+        var g=document.forms["reg"]["password"].value;
+        if ((a==null || a=="") && (b==null || b=="") && (c==null || c=="") && (d==null || d=="") && (e==null || e==""))
+        {
+          alert("All Field must be filled out");
+          return false;
+        }
+        if (a==null || a=="")
+        {
+          alert("First name must be filled out");
+          return false;
+        }
+        if (b==null || b=="")
+        {
+          alert("Last name must be filled out");
+          return false;
+        }
+        if (c==null || c=="")
+        {
+          alert("Gender name must be filled out");
+          return false;
+        }
+        if (d==null || d=="")
+        {
+          alert("address must be filled out");
+          return false;
+        }
+        if (e==null || e=="")
+        {
+          alert("contact must be filled out");
+          return false;
+        }
+        if (f==null || f=="")
+        {
+          alert("username must be filled out");
+          return false;
+        }
+        if (g==null || g=="")
+        {
+          alert("password must be filled out");
+          return false;
+        }
+      }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+    </html>

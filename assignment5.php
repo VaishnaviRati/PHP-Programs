@@ -9,8 +9,8 @@
 
 <?php
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr =$productsErr =$subjectsErr= $hobbiesErr= "";
-$name = $email = $gender = $comment =$products =$subjects=$hobbies= "";
+$nameErr = $emailErr = $genderErr =$productsErr =$subjectsErr= $hobbiesErr=$countryErr=$stateErr=$cityErr="";
+$name = $email = $gender = $comment =$products =$subjects=$hobbies=$countries=$states=$cites= "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -31,6 +31,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $emailErr = "Invalid email format";
     }
+  }
+
+  if (empty($_POST["country"])) {
+    $countryErr = "Country is required";
+  } else {
+    $countrys=$_POST["country"];
+  }
+  if (empty($_POST["state"])) {
+    $stateErr = "State is required";
+  } else {
+    $statess=$_POST["state"];
+  }
+  if (empty($_POST["city"])) {
+    $cityErr = "city is required";
+  } else {
+    $citys=$_POST["city"];
   }
 
 
@@ -63,7 +79,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  $products = array("Java", "C", "C++", "OOP");
  $subjects= array("PHP","UI",".net");
  $hobbies=array("Dancing","Singing","Cooking","Others");
-
+ $countries=array("Afghanistan","Albania","Algeria","Brezil","India","Japan");
+ $states=array("Karnataka","Tamilnadu","Kabul","Kandahar","Aomori","Chiba");
+ $cites=array("Banglore","Coimbatore","Mysore","Kochi","Herat");
 
 
 ?>
@@ -79,6 +97,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   E-mail: <input type="text" name="email" value="<?php echo $email;?>">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
+
+  Country:<select name="country">
+        <option value="">Choose one</option>
+    <?php
+   
+        foreach($countries as $item){ 
+          ?>
+          <option value="<?php echo $item ?>" <?php if(isset($countrys)&& $countrys==$item)
+          echo "selected"?>><?php echo $item ?>
+          </option>
+        <?php 
+      }
+    
+        ?>
+      
+      </select><span class="error">* <?php echo $countryErr;?></span>
+  
+     <br><br>
+
+     State:<select name="state">
+        <option value="">Choose one</option>
+    <?php
+   
+        foreach($states as $item){ 
+          ?>
+          <option value="<?php echo $item ?>" <?php if(isset($statess)&& $statess==$item)
+          echo "selected"?>><?php echo $item ?>
+          </option>
+        <?php 
+      }
+    
+        ?>
+      
+      </select><span class="error">* <?php echo $stateErr;?></span>
+  
+     <br><br>
+
+     City:<select name="city">
+        <option value="">Choose one</option>
+    <?php
+   
+        foreach($cites as $item){ 
+          ?>
+          <option value="<?php echo $item ?>" <?php if(isset($citys)&& $citys==$item)
+          echo "selected"?>><?php echo $item ?>
+          </option>
+        <?php 
+      }
+    
+        ?>
+      
+      </select><span class="error">* <?php echo $cityErr;?></span>
+  
+     <br><br>
 
   Course:<select name="product">
         <option value="">Choose one</option>
@@ -99,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      <br><br>
 
       Favourite Subject:<select name="subject[]" multiple="multiple">
-        <option value="">Choose one</option>
+        <option value=""></option>
     <?php
     // <?php if(in_array("Sports",$hobbies)) echo "selected=selected";
         foreach($subjects as $value){ 
@@ -148,9 +220,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
     
-        
-     
-  
      <br><br>
   Gender:
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
@@ -167,6 +236,14 @@ echo "<br>";
 echo "Your Email : ".$email;
 echo "<br>";
 
+echo "country:".$countrys;
+echo "<br>";
+
+echo "state:".$statess;
+echo "<br>";
+
+echo "city:".$citys;
+echo "<br>";
 echo "Course : ".$p;
 
 echo "<br>";

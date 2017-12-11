@@ -1,19 +1,24 @@
 <?php
-include 'class.user.php';  
+include 'class.user.php'; 
+include 'validation.php'; 
 $user = new User(); 
 // Checking for user logged in or not
 
  if (isset($_REQUEST['submit'])){
  extract($_REQUEST);
- $register = $user->reg_user($name,$username,$password,$email,$phone_number,$role);
+  if((empty($nameErr) && empty($emailErr) && empty($phoneErr) && empty($passErr)))
+  {
+ $register = $user->reg_user($name,$username,$password,$email,$phone_number,$role,$status);
+ 
  if ($register) {
  // Registration Success
- echo 'Registration successful <a href="userLogin.php">Click here</a> to login';
+ header("Location: userLogin.php?msg=registered successfully");
  } else {
  // Registration Failed
  echo 'Registration failed. Email or Username already exits please try again';
  }
  }
+}
 ?>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -22,6 +27,12 @@ $user = new User();
 <style><!--
  #container{width:400px; margin: 0 auto;}
 --></style>
+<head>
+<style>
+.error {color: #FF0000;}
+</style>
+</head>
+
 
 <script type="text/javascript" language="javascript">
  function submitreg() {
@@ -51,7 +62,7 @@ $user = new User();
 <tbody>
 <tr>
 <th>User Name:</th>
-<td><input type="text" name="name" required="" /></td>
+<td><input type="text" name="name" required="" /></td><td><span class="error">* <?php echo $nameErr;?></span></td>
 </tr>
 <tr>
 <th>Password:</th>
@@ -59,11 +70,11 @@ $user = new User();
 </tr>
 <tr>
 <th>Email:</th>
-<td><input type="text" name="email" required="" /></td>
+<td><input type="text" name="email" required="" /></td><td><span class="error">* <?php echo $emailErr;?></span></td>
 </tr>
 <tr>
 <th>Phone Number:</th>
-<td><input type="text" name="phone_number" required="" /></td>
+<td><input type="text" name="phone_number" required="" /></td><td><span class="error">* <?php echo $phoneErr;?></span></td>
 </tr>
 <tr>
 <td></td>
@@ -71,7 +82,7 @@ $user = new User();
 </tr>
 <tr>
 <td></td>
-<td><a href="login.php">Already registered! Click Here!</a></td>
+<td><a href="userLogin.php">Already registered! Click Here!</a></td>
 </tr>
 </tbody>
 </table>

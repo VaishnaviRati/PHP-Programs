@@ -1,14 +1,14 @@
 <?php
 session_start();
-    include 'class.user.php';
-    $user = new User();
+    include 'class.admin.php';
+    $admin = new Admin();
 
     if (isset($_REQUEST['submit'])) {
         extract($_REQUEST);
-        $login = $user->check_login($emailusername, $password);
+        $login = $admin->check_login($emailusername, $password);
         if ($login) {
             // Registration Success
-           header("location:home.php");
+           header("Location: adminView.php");
         } else {
             // Registration Failed
             echo 'Wrong username or password';

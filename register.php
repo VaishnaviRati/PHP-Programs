@@ -12,8 +12,8 @@
 include ('config.php');
 
 
-$nameErr = $emailErr = $genderErr = $phoneErr= $passErr="";
-$name = $email = $gender = $phone_number=$password="";
+$nameErr = $emailErr = $genderErr = $phoneErr= $passErr=$roleErr="";
+$name = $email = $gender = $phone_number=$password=$role="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -63,6 +63,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   else {
     $gender=$_POST["gender"];
   }
+
+  if(empty($_POST['role'])) {
+    $roleErr="Role is required";
+  }
+
+  else {
+    $role=$_POST['role'];
+  }
 }
 
 ?>
@@ -80,6 +88,27 @@ Password:<input type="password" name="password" value="<?php echo $password;?>">
 <span class="error">* <?php echo $passErr;?></span>
 <br><br>
 
+Role : <select name="role">
+   <option value="">Select Role</option>
+
+
+<?php
+ 
+   $query="SELECT * FROM roles";
+
+
+   $result=mysqli_query($connection,$query);
+   while ($row=mysqli_fetch_array($result)) { 
+   
+    print_r($row['role']);?>
+   <option value="<?php echo $row['role_id']?>"<?php if(isset($role)&& $role==$row['role_id'])
+          echo "selected"?>><?php echo $row['role_name']?> </option>
+   <?php } ?>
+  </select><span class="error">* <?php echo $roleErr;?> </span>
+
+
+  <br><br>
+
     
 E-mail: <input type="text" name="email" value="<?php echo $email;?>">
 <span class="error">* <?php echo $emailErr;?></span>
@@ -96,8 +125,8 @@ Phone Number: <input type="text" name="phone_number" value="<?php echo $phone_nu
 <?php
   if(isset($_POST["submit"])) {
 
-    $sql = "INSERT INTO dbUsers (username,password,email,phone_Number) 
-    VALUES('$name','$pass','$email','$phone_number')";
+    $sql = "INSERT INTO dbUsers (username,password,email,phone_Number,role_id) 
+    VALUES('$name','$pass','$email','$phone_number','$role')";
    //echo $connection, $sql;
     if(mysqli_query($connection,$sql)) {
       echo "succsefully Registered";

@@ -4,7 +4,7 @@ $userIds=$_GET['uid'];
 
 include "../Model/classAdmin.php";
 include '../Model/validation.php';
-include '../View/adminView.php';
+
 $obj1 = new Admin();
 $users = $obj1->user_details($id);
 if (isset($_POST['submit'])){
@@ -43,6 +43,7 @@ if (isset($_REQUEST['esubmit'])){
  
  
  }
- }
 
+ }
+ include '../View/adminView.php';
 ?>

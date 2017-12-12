@@ -5,11 +5,11 @@
 .error {color: #FF0000;}
 </style>
 </head>
-<a href="../View/userView.php?q=logout" >LOGOUT</a>
+<a href="../Controller/adminLoginController.php?q=logout" >LOGOUT</a>
 
 <div id="container">
 <h1>Edit Users Profile Here</h1>
-<form action="" method="post" name="reg">
+<form action="../Controller/editUserController.php?userid=<?php echo $userId; ?>" method="post" name="reg">
 <table>
 <tbody>
 	<?php while ($userInfo = $result->fetch_assoc()) { ?>

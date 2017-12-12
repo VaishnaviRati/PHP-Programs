@@ -24,7 +24,7 @@
 
 <span style="font-family: 'Courier 10 Pitch', Courier, monospace; font-size: 13px; font-style: normal; line-height: 1.5;"><div id="container"></span>
 <h1>Login Here</h1>
-<form action="" method="post" name="login">
+<form action="../Controller/adminLoginController.php" method="post" name="login">
 <table>
 <tbody>
 <tr>

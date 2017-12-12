@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../View/classUser.php';
+include '../Model/classUser.php';
 $user = new User(); 
 $id = $_SESSION['id'];
 if (!$user->get_session()){

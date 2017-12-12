@@ -2,7 +2,7 @@
 ob_start();
 session_start();
     include '../Model/classAdmin.php';
-    include '../View/adminLogin.php';
+    
     $admin = new Admin();
 
     if (isset($_REQUEST['submit'])) {
@@ -15,6 +15,8 @@ session_start();
             // Registration Failed
             echo 'Wrong username or password';
         }
+        
     }
+    include '../View/adminLogin.php';
     ob_end_flush();
 ?>

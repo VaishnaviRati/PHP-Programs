@@ -27,7 +27,7 @@
 
 <td><a href='../Controller/editUserController.php?userid=<?php echo $userInfo['id']; ?>' >Edit</a></td>
 
-<form  action="" method="post" >
+<form  action="../Controller/adminViewController.php" method="post" >
 	<input type="hidden" name="dUser" value="<?php echo $userInfo['id']; ?>">
 <td><input type="submit" name="dsubmit" value="disable" style="color:red"></td>
 </form>
@@ -51,7 +51,7 @@ else{
 
 <td><a href='../Controller/editUserController.php?userid=<?php echo $userInfo['id']; ?>' >Edit</a></td>
 
-<form  action="" method="post" >
+<form  action="../Controller/adminViewController.php" method="post" >
 	<input type="hidden" name="eUser" value="<?php echo $userInfo['id']; ?>">
 <td><input type="submit" name="esubmit" value="enable" style="color:green"></td>
 </form>

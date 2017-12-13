@@ -7,6 +7,3 @@
 </center>
 </html>
 
-<?php
-
-?>

@@ -12,11 +12,12 @@ $user = new User();
  
  if ($register) {
  // Registration Success
- header("Location: ../View/userLogin.php?msg=registered successfully");
+ header("Location: ../Controller/userLoginController.php?msg=registered successfully");
  } else {
  // Registration Failed
  echo 'Registration failed. Email or Username already exits please try again';
  }
  }
 }
+include '../View/registration.php';
 ?>

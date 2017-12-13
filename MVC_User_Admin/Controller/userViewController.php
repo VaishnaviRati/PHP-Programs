@@ -11,4 +11,5 @@ if (isset($_GET['q'])){
  $user->user_logout();
  header("Location: ../View/welcome.php");
  }
+ include '../View/userView.php';
  ?>

@@ -2,7 +2,6 @@
 ob_start();
 session_start();
     include '../Model/classUser.php';
-     include '../View/userLogin.php';
     $user = new User();
 
     if (isset($_REQUEST['submit'])) {
@@ -16,6 +15,7 @@ session_start();
             echo 'Wrong username or password';
         }
     }
+     include '../View/userLogin.php';
 
     ob_end_flush();
 ?>

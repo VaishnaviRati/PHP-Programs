@@ -18,36 +18,31 @@ include "db_config.php";
 		public function reg_user($name,$username,$password,$email,$phone_number,$role,$status){
 
 			$password = md5($password);
-			$sql="SELECT * FROM dbUsers WHERE username='$username' OR email='$email'";
+			$register_sql="SELECT * FROM dbUsers WHERE username='$username' OR email='$email'";
 
 			//checking if the username or email is available in db
-			$check =  $this->db->query($sql) ;
+			$check =  $this->db->query($register_sql) ;
 			$count_row = $check->num_rows;
 
 
-			//if the username is not in db then insert to the table username,password,email,phone_Number,role_id
 			if ($count_row == 0){
-/*				$sql1="INSERT INTO dbUsers SET username='$username', password='$password',email='$email',
-				phone_Number='$phone_Number',role_id='$role'";*/
-				 $sql1 = "INSERT INTO dbUsers (username,password,email,phone_number,role_id,status) 
+				 $register_sql1 = "INSERT INTO dbUsers (username,password,email,phone_number,role_id,status) 
                  VALUES('$name','$password','$email',$phone_number,2,0)";
            
-				$result = mysqli_query($this->db,$sql1) or die(mysqli_connect_errno()."Data cannot inserted");
+				$result = mysqli_query($this->db,$register_sql1) or die(mysqli_connect_errno()."Data cannot inserted");
         		return $result;
 			}
-			else {
-			 return false;
-			}
+			
 		}
 
 		/*** for login process ***/
 		public function check_login($emailusername, $password){
 
         	$password = md5($password);
-			$sql2="SELECT id from dbUsers WHERE  username='$emailusername' and password='$password' and role_id=2 ";
+			$login_sql="SELECT id from dbUsers WHERE  username='$emailusername' and password='$password' and role_id=2 ";
 			
 			//checking if the username is available in the table
-        	$result = mysqli_query($this->db,$sql2);
+        	$result = mysqli_query($this->db,$login_sql);
         	$user_data = mysqli_fetch_array($result);
         	
         	$count_row = $result->num_rows;
@@ -58,15 +53,13 @@ include "db_config.php";
 	            $_SESSION['id'] = $user_data['id'];
 	            return true;
 	        }
-	        else{
-			    return false;
-			}
+	        
     	}
 
     	/*** for showing the username or fullname ***/
     	public function get_fullname($id){
-    		$sql3="SELECT * FROM dbUsers WHERE id = $id";
-	        $result = mysqli_query($this->db,$sql3);
+    		$getfullname_sql="SELECT * FROM dbUsers WHERE id = $id";
+	        $result = mysqli_query($this->db,$getfullname_sql);
 	        $user_data = mysqli_fetch_array($result);
 
 	        echo "<b>User Name:</b>".$user_data['username']."<br>";
@@ -76,26 +69,20 @@ include "db_config.php";
     	/*** To get the details in editprofile in user ***/
     	public function details($id)
     	{
-    		$sql4="SELECT * FROM dbUsers WHERE id = $id";
-	        $result = mysqli_query($this->db,$sql4);
+    		$details_sql="SELECT * FROM dbUsers WHERE id = $id";
+	        $result = mysqli_query($this->db,$details_sql);
 	        $user_data = mysqli_fetch_array($result);
 	        return $user_data;
     	}
 
     	public function update_changes($name,$email,$phone_number,$id) {
-    		$sql4="UPDATE dbUsers SET username = '$name', email ='$email' ,phone_number='$phone_number' WHERE id = $id";
+    		$update_sql="UPDATE dbUsers SET username = '$name', email ='$email' ,phone_number='$phone_number' WHERE id = $id";
     		
-    		$result = mysqli_query($this->db,$sql4);
-    		//$user_data = mysqli_fetch_array($result);
-
+    		$result = mysqli_query($this->db,$update_sql);
     		if ($result === TRUE) {
 		       return TRUE;
 		    } 
-		    else {
-               return FALSE;
-			}
-
-
+		    
     	}
 
     	/*** starting the session ***/

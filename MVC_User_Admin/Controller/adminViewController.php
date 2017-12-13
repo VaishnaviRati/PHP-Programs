@@ -5,10 +5,10 @@ $userIds=$_GET['uid'];
 include "../Model/classAdmin.php";
 include '../Model/validation.php';
 
-$obj1 = new Admin();
-$users = $obj1->user_details($id);
+$admin = new Admin();
+$users = $admin->user_details($id);
 if (isset($_POST['submit'])){
- $delete = $obj1->delete_user($_POST['deleteUser']); 
+ $delete = $admin->delete_user($_POST['deleteUser']); 
  
 	if($delete)
 	{
@@ -21,7 +21,7 @@ if (isset($_POST['submit'])){
 }
  if (isset($_REQUEST['dsubmit'])){
  extract($_REQUEST);
- $disable = $obj1->status_disable($_POST['dUser']); 
+ $disable = $admin->status_disable($_POST['dUser']); 
 
  	if ($disable==TRUE) {
  // Registration Success
@@ -34,7 +34,7 @@ if (isset($_POST['submit'])){
 
 if (isset($_REQUEST['esubmit'])){
  extract($_REQUEST);
- $disable = $obj1->status_enable($_POST['eUser']); 
+ $disable = $admin->status_enable($_POST['eUser']); 
 
  	if ($disable==TRUE) {
  

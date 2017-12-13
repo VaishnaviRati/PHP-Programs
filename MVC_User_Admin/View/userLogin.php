@@ -25,7 +25,7 @@
 <span style="font-family: 'Courier 10 Pitch', Courier, monospace; font-size: 13px; font-style: normal; line-height: 1.5;"><div id="container"></span>
 <h2 style="color : green"><?php echo $message=$_GET['msg']; ?></h2>
 <h1>Login Here</h1>
-<form action="" method="post" name="login">
+<form action="../Controller/userLoginController.php" method="post" name="login">
 <table>
 <tbody>
 <tr>
@@ -42,7 +42,7 @@
 </tr>
 <tr>
 <td></td>
-<td><a href="../View/registration.php">Register new user</a></td>
+<td><a href="../Controller/registrationController.php">Register new user</a></td>
 </tr>
 </tbody>
 </table>

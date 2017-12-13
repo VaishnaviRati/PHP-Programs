@@ -60,7 +60,7 @@
 </tr>
 <tr>
 <td></td>
-<td><a href="../View/userLogin.php">Already registered! Click Here!</a></td>
+<td><a href="../Controller/userLoginController.php">Already registered! Click Here!</a></td>
 </tr>
 </tbody>
 </table>

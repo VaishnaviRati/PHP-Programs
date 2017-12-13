@@ -6,8 +6,8 @@ include "../Model/classAdmin.php";
 $id= $_GET['id'];
 $userId = $_GET['userid'];
 
-$obj1 = new Admin();
-$result = $obj1->user_detailsOnId($userId);
+$admin = new Admin();
+$result = $admin->user_detailsOnId($userId);
 
 // echo $userInfo;
 if (isset($_REQUEST['submit'])){
@@ -16,7 +16,7 @@ if (isset($_REQUEST['submit'])){
 
   if(empty($nameErr) && empty($emailErr) && empty($phoneErr))
   {
- $update = $obj1->update_changes($name,$email,$phone_number,$uid);
+ $update = $admin->update_changes($name,$email,$phone_number,$uid);
 
  	if ($update==TRUE) {
  // Registration Success

@@ -35,7 +35,7 @@
 </script>
 <div id="container">
 <h1>Registration Here</h1>
-<form action="" method="post" name="reg">
+<form action="index.php?page=register" method="post" name="reg">
 <table>
 <tbody>
 <tr>
@@ -60,7 +60,7 @@
 </tr>
 <tr>
 <td></td>
-<td><a href="../Controller/userLoginController.php">Already registered! Click Here!</a></td>
+<td><a href="index.php?page=user_login">Already registered! Click Here!</a></td>
 </tr>
 </tbody>
 </table>

@@ -8,8 +8,8 @@
 <a href="../Controller/adminLoginController.php?q=logout" >LOGOUT</a>
 
 <div id="container">
-<h1>Edit Users Profile Here</h1>
-<form action="../Controller/editUserController.php?userid=<?php echo $userId; ?>" method="post" name="reg">
+<h1>Edit Users Profile Here</h1> 
+<form action="index.php?page=edit&&userid=<?php echo $userId; ?>" method="post" name="reg">
 <table>
 <tbody>
 	<?php while ($userInfo = $result->fetch_assoc()) { ?>

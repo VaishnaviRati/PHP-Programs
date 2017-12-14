@@ -23,8 +23,9 @@
 </script>
 
 <span style="font-family: 'Courier 10 Pitch', Courier, monospace; font-size: 13px; font-style: normal; line-height: 1.5;"><div id="container"></span>
+<h2 style="color : green"><?php echo $message=$_GET['msg']; ?></h2>
 <h1>Login Here</h1>
-<form action="../Controller/adminLoginController.php" method="post" name="login">
+<form action="index.php?page=user_login" method="post" name="login">
 <table>
 <tbody>
 <tr>
@@ -37,11 +38,11 @@
 </tr>
 <tr>
 <td></td>
-<td><input onclick="return(submitlogin());" type="submit" name="submit" value="Login" /></td>
+<td><input onclick="return(submitlogin());" type="submit" name="submit" value="Login"/></td>
 </tr>
 <tr>
 <td></td>
-
+<td><a href="index.php?page=register">Register new user</a></td>
 </tr>
 </tbody>
 </table>

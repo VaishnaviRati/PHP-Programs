@@ -5,13 +5,13 @@
 </style>
 </head>
 
-<a href="../Controller/userViewController.php"> Back</a>
+<a href="index.php?page=details"> Back</a>
 &nbsp;
-<a href="../Controller/userLoginController.php?q=logout" >LOGOUT</a>
+<a href="index.php?page=user_login&&q=logout" >LOGOUT</a>
 
 <div id="container">
 <h1>Edit Your Profile Here</h1>
-<form action="../Controller/editprofileController.php?id=<?php echo $id; ?>" method="post" name="reg">
+<form action="index.php?page=edit_profile&&id=<?php echo $id; ?>" method="post" name="reg">
 <table>
 <tbody>
 <tr>

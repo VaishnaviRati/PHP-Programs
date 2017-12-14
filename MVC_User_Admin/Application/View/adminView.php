@@ -1,7 +1,7 @@
 <html>
 <h2 style= "color: green"><?php echo $_GET['msg']; ?></h2>
 &nbsp;
-<a href="../Controller/adminLoginController.php?q=logout" >LOGOUT</a>
+<a href="index.php?page=login&&q=logout" >LOGOUT</a>
 
 <div id="container">
 <h1>Users Profile</h1>
@@ -15,26 +15,26 @@
 <th>Phone Number</th>
 
 </tr>
-	<?php while ($userInfo = mysqli_fetch_array($users)) { 
+	<?php 
+		while ($userInfo = mysqli_fetch_array($users)) { 
 		
-		if($userInfo['status'] == 1){
-
-		?>	
+		if($userInfo['status'] == 1) {
+	?>	
 <tr>
 <td><input type="text" name="name" value='<?php echo $userInfo['username']; ?>' readonly /></td>
 <td><input type="text" name="email" value='<?php echo $userInfo['email']; ?>' readonly /></td>
 <td><input type="text" name="phone_number" value='<?php echo $userInfo['phone_number']; ?>'readonly/></td>
 
-<td><a href='../Controller/editUserController.php?userid=<?php echo $userInfo['id']; ?>' >Edit</a></td>
+<td><a href='index.php?page=edit&&userid=<?php echo $userInfo['id']; ?>' >Edit</a></td>
 
-<form  action="../Controller/adminViewController.php" method="post" >
+<form  action="index.php?page=userInfo" method="post" >
 	<input type="hidden" name="dUser" value="<?php echo $userInfo['id']; ?>">
 <td><input type="submit" name="dsubmit" value="disable" style="color:red"></td>
 </form>
 
 
 
-<form  action="" method="post" >
+<form  action="index.php?page=userInfo" method="post" >
 	<input type="hidden" name="deleteUser" value="<?php echo $userInfo['id']; ?>">
 <td><input type="submit" name="submit" value="delete"></td>
 </form>
@@ -49,14 +49,14 @@ else{
 <td><input type="text" name="email" value='<?php echo $userInfo['email']; ?>' readonly /></td>
 <td><input type="text" name="phone_number" value='<?php echo $userInfo['phone_number']; ?>'readonly/></td>
 
-<td><a href='../Controller/editUserController.php?userid=<?php echo $userInfo['id']; ?>' >Edit</a></td>
+<td><a href='index.php?page=edit&&userid=<?php echo $userInfo['id']; ?>' >Edit</a></td>
 
-<form  action="../Controller/adminViewController.php" method="post" >
+<form  action="index.php?page=userInfo" method="post" >
 	<input type="hidden" name="eUser" value="<?php echo $userInfo['id']; ?>">
 <td><input type="submit" name="esubmit" value="enable" style="color:green"></td>
 </form>
 
-<form  action="" method="post" >
+<form  action="index.php?page=userInfo" method="post" >
 	<input type="hidden" name="deleteUser" value="<?php echo $userInfo['id']; ?>">
 <td><input type="submit" name="submit" value="delete"></td>
 </form>

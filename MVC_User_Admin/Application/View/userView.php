@@ -11,9 +11,9 @@
 --></style>
 <h1 style="color : green"><?php echo $_GET['msg']; ?></h1>
 <div id="container">
-<a href="../Controller/userLoginController.php?q=logout" >LOGOUT</a>
+<a href="index.php?page=user_login&&q=logout" >LOGOUT</a>
 &nbsp;
-<a href="../Controller/editprofileController.php?id=<?php echo $id;?>">Edit Profile</a>
+<a href="index.php?page=edit_profile&&id=<?php echo $id;?>">Edit Profile</a>
 
 
 <div id="main-body">

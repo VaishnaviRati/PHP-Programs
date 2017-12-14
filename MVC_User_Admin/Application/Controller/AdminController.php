@@ -23,7 +23,7 @@ class AdminController
     
     public function userView()
     {
-        $id      = $_GET['id'];
+        $id = $_GET['id'];
         $userIds = $_GET['uid'];
         
         $admin = new Admin();
@@ -55,7 +55,7 @@ class AdminController
     
     public function userEdit()
     {
-        $id     = $_GET['id'];
+        $id = $_GET['id'];
         $userId = $_GET['userid'];
         $admin  = new Admin();
         $result = $admin->user_detailsOnId($userId);

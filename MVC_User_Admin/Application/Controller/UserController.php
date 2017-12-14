@@ -58,8 +58,8 @@ class UserController
     
     public function editProfile()
     {
-        $id       = $_GET['id'];
-        $user     = new User();
+        $id = $_GET['id'];
+        $user = new User();
         $userInfo = $user->details($id);
         
         if (isset($_REQUEST['submit'])) {

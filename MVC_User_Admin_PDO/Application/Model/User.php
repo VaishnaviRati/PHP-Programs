@@ -14,13 +14,13 @@ class User
         $password = md5($password);
         $register_sql = "SELECT * FROM dbUsers WHERE username='$username' OR email='$email'";
         //checking if the username or email is available in db
-        $check = $this->db->query($register_sql);
+        $check = $db->pdo->prepare($register_sql);
         $count_row = $check->num_rows;
         if ($count_row == 0) {
             $register_sql1 = "INSERT INTO dbUsers (username,password,email,phone_number,role_id,status) 
             VALUES('$name','$password','$email',$phone_number,".self::USER_ROLE.",".self::DISABLE.")";
-            $result = mysqli_query($this->db, $register_sql1) or die(mysqli_connect_errno() . "Data cannot inserted");
-            return $result;
+            $result =$db->pdo->prepare($register_sql1);
+            return $result->execute();
         }
     }
     /*** for login process ***/
@@ -30,9 +30,10 @@ class User
         $password  = md5($password);
         $login_sql = "SELECT id from dbUsers WHERE  username='$emailusername' and password='$password' and role_id=".self::USER_ROLE." ";
         //checking if the username is available in the table
-        $result = mysqli_query($this->db, $login_sql);
-        $user_data = mysqli_fetch_array($result);
-        $count_row = $result->num_rows;
+        $result = $db->pdo->prepare($login_sql);
+        $result->execute();
+        $user_data=$result->fetch(\PDO::FETCH_ASSOC);
+        $count_row = sizeof($user_data);
         if ($count_row == 1) {
             // this login var will use for the session thing
             $_SESSION['login'] = true;
@@ -47,8 +48,9 @@ class User
     {
         $db = new DBConnection();
         $getfullname_sql = "SELECT * FROM dbUsers WHERE id = $id";
-        $result = mysqli_query($this->db, $getfullname_sql);
-        $user_data = mysqli_fetch_array($result);
+        $result = $db->pdo->prepare($getfullname_sql);
+        $result->execute();
+        $user_data = $result->fetch(\PDO::FETCH_ASSOC);
         echo "<b>User Name:</b>" . $user_data['username'] . "<br>";
         echo "<b>email :</b> " . $user_data['email'] . "<br>";
         echo "<b>Phone Number :</b> " . $user_data['phone_number'];
@@ -58,20 +60,17 @@ class User
     {
         $db = new DBConnection();
         $details_sql = "SELECT * FROM dbUsers WHERE id = $id";
-        $result = mysqli_query($this->db, $details_sql);
-        $user_data = mysqli_fetch_array($result);
-        return $user_data;
+        $result = $db->pdo->prepare($details_sql);
+        $result->execute();
+        return $user_data = $result->fetch(\PDO::FETCH_ASSOC); 
     }
     
     public function update_changes($name, $email, $phone_number, $id)
     {
         $db = new DBConnection();
         $update_sql = "UPDATE dbUsers SET username = '$name', email ='$email' ,phone_number='$phone_number' WHERE id = $id";
-        $result = mysqli_query($this->db, $update_sql);
-        if ($result === TRUE) {
-            return TRUE;
-        }
-        
+        $result = $db->pdo->prepare($update_sql);
+        return $result->execute();
     }
     
     /*** starting the session ***/

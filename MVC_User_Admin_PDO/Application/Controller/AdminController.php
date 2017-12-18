@@ -39,16 +39,11 @@ class AdminController
         if (isset($_REQUEST['dsubmit'])) {
             extract($_REQUEST);
             $disable = $admin->status_disable($_POST['dUser']);
-            if ($disable == TRUE) {
-                
-            }
         }
         
         if (isset($_REQUEST['esubmit'])) {
             extract($_REQUEST);
             $disable = $admin->status_enable($_POST['eUser']);
-            if ($disable == TRUE) {
-            }
         }
         require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/adminView.php';
     }
@@ -57,7 +52,7 @@ class AdminController
     {
         $id = $_GET['id'];
         $userId = $_GET['userid'];
-        $admin  = new Admin();
+        $admin = new Admin();
         $result = $admin->user_detailsOnId($userId);
         if (isset($_REQUEST['submit'])) {
             extract($_REQUEST);

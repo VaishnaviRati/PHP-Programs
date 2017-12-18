@@ -2,12 +2,6 @@
 session_start();
 require __DIR__.'/vendor/autoload.php';
 
-
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'compass');
-define('DB_DATABASE', 'company');
-
 $home = new Compassite\Controller\Home();
 if($_GET['page']=='home') {
 	$home->welcome();

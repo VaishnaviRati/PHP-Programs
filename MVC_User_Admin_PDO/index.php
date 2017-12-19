@@ -18,6 +18,21 @@ if($_GET['page'] == 'userInfo')
 	$viewObj->userView();
 }
 
+if($_GET['page'] == 'deleteUser')
+{
+	$viewObj->deleteUser();
+}
+
+if($_GET['page'] == 'userEnable')
+{
+	$viewObj->userEnable();
+}
+
+if($_GET['page'] == 'userDisable')
+{
+	$viewObj->userDisable();
+}
+
 if($_GET['page']=='edit') {
 
 	$viewObj->userEdit();

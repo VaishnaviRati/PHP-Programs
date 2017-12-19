@@ -1,5 +1,4 @@
 <?php
-
 namespace Compassite\Model;
 
 $nameErr = $emailErr = $phoneErr = $passErr = "";

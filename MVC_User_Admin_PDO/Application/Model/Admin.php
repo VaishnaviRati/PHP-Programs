@@ -34,7 +34,8 @@ class Admin
     public function user_details($id)
     {
         $db = new DBConnection();
-        $user_detail_sql = "SELECT * FROM dbUsers WHERE role_id=".self::USER_ROLE."";
+        $user_detail_sql = "SELECT * FROM dbUsers 
+        WHERE role_id=".self::USER_ROLE."" ;
         $result = $db->pdo->prepare($user_detail_sql);
         $result->execute();
         return $result->fetchAll(); 

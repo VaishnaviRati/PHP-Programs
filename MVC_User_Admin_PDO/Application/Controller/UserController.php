@@ -1,5 +1,6 @@
 <?php
 namespace Compassite\Controller;
+
 use Compassite\Model\User;
 use Compassite\Model\validation;
 
@@ -18,7 +19,7 @@ class UserController
                 echo 'Wrong username or password';
             }
         }
-        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/userLogin.php';
+        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/UserView/userLogin.php';
     }
     
     public function userDetails()
@@ -33,7 +34,7 @@ class UserController
         $user->user_logout();
         header("Location: index.php?page=user_login");
         }*/
-        include '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/userView.php';
+        include '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/UserView/userView.php';
     }
     
     public function registration()
@@ -52,7 +53,7 @@ class UserController
                 }
             }
         }
-        include '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/registration.php';
+        include '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/UserView/registration.php';
         
     }
     
@@ -74,7 +75,7 @@ class UserController
                 }
             }
         }
-        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/editprofile.php';
+        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/UserView/editprofile.php';
         
     }
     

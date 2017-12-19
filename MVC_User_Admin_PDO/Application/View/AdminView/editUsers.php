@@ -7,6 +7,7 @@
    <a href="index.php?page=login&&q=logout" >LOGOUT</a>
    <div id="container">
       <h1>Edit Users Profile Here</h1>
+      <?php if (isset($updateMsg)) echo '<h4>'.$updateMsg.'</h4>'; ?>
       <form action="index.php?page=edit&&userid=<?php echo $userId; ?>" method="post" name="reg">
          <table>
             <tbody>

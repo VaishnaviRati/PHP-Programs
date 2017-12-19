@@ -25,6 +25,7 @@
    </span>
    <h1>Login Here</h1>
    <form action="index.php?page=login" method="post" name="login">
+   <?php if (isset($errMsg)) echo '<h4>'.$errMsg.'</h4>'; ?>
    <table>
    <tbody>
    <tr>

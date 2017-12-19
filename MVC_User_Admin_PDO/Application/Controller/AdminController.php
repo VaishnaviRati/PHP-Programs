@@ -13,12 +13,10 @@ class AdminController
             $login = $admin->check_login($emailusername, $password);
             if ($login) {
                 header("Location: index.php?page=userInfo");
-            } else {
-                echo 'Wrong username or password';
             }
-            
+                $errMsg = 'Wrong username or password';
         }
-        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/adminLogin.php';
+        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/AdminView/adminLogin.php';
     }
     
     public function userView()
@@ -28,26 +26,51 @@ class AdminController
         
         $admin = new Admin();
         $users = $admin->user_details($id);
+        
+        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/AdminView/adminView.php';
+    }
+
+    public function deleteUser()
+    {
+        $id = $_POST['deleteUser'];
+        //$userIds = $_GET['uid'];
+        $admin = new Admin();
         if (isset($_POST['submit'])) {
             $delete = $admin->delete_user($_POST['deleteUser']);
             if ($delete) {
-                echo "deleted";
-            } else {
-                echo " not deleted";
-            }
+                $deleteMsg = "deleted";
+            } 
+                $deleteErr = "not deleted";    
         }
-        if (isset($_REQUEST['dsubmit'])) {
-            extract($_REQUEST);
+        $this->userView();
+    }
+
+    public function userEnable()
+    {
+        $id = $_POST['eUser'];
+        // $userIds = $_GET['uid'];
+        $admin = new Admin();
+
+        if (isset($_POST['eUser'])) {
+            $disable = $admin->status_enable($_POST['eUser']);
+        }
+        $this->userView(); 
+    }
+    
+
+    public function userDisable()
+    {
+        $id = $_POST['dUser'];
+
+        // var_dump($_POST);exit;
+        $admin = new Admin();
+
+        if (isset($_POST['dUser'])) {
             $disable = $admin->status_disable($_POST['dUser']);
         }
         
-        if (isset($_REQUEST['esubmit'])) {
-            extract($_REQUEST);
-            $disable = $admin->status_enable($_POST['eUser']);
-        }
-        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/adminView.php';
+        $this->userView();
     }
-    
     public function userEdit()
     {
         $id = $_GET['id'];
@@ -62,11 +85,11 @@ class AdminController
                 if ($update == TRUE) {
                     header("Location: index.php?page=userInfo");
                 } else {
-                    echo 'Update Failed';
+                    $updateMsg = 'Update Failed';
                 }
             }
         }
-        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/editUsers.php';
+        require '/var/www/html/PHP-Programs/MVC_User_Admin_PDO/Application/View/AdminView/editUsers.php';
     }
     
 }
